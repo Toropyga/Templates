@@ -67,7 +67,7 @@
  */
 namespace FYN;
 
-class Template {
+class Templates {
     /**
      * Папка сайта по умолчанию относительно корневой директории
      * @var string
@@ -147,6 +147,12 @@ class Template {
      */
     public $use_session = true;
 
+    /**
+     * Templates constructor.
+     * @param string $path - имя общей папки стилей
+     * @param string $style - имя папки стиля
+     * @param string $cache - имя папки временных файлов
+     */
     public function __construct($path = '', $style = '', $cache = '') {
         if (!defined("SEPARATOR")) {
             $separator = getenv("COMSPEC")? '\\' : '/';
