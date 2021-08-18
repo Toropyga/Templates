@@ -1,0 +1,25 @@
+{
+    "name": "toropyga/templates",
+    "description": "Libraries for working with templates from Toropyga",
+    "authors": [
+        {
+            "name": "Yuri Frantsevich",
+            "email": "frantsevich@gmail.com",
+            "homepage": "https://github.com/Toropyga/Templates",
+            "role": "Developer"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.1.0"
+    },
+    "require-dev": {
+
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "FYN\\": "src/"
+        }
+    }
+}
