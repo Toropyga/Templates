@@ -3,7 +3,7 @@
  * Класс обработки шаблонов
  * @author Yuri Frantsevich (FYN)
  * Date 26/06/2005
- * @version 4.0.1
+ * @version 4.0.2
  * @copyright 2008-2021
  */
 
