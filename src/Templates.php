@@ -3,7 +3,7 @@
  * Класс обработки шаблонов
  * @author Yuri Frantsevich (FYN)
  * Date 26/06/2005
- * @version 4.0.2
+ * @version 4.0.3
  * @copyright 2008-2021
  */
 
@@ -564,6 +564,7 @@ class Templates {
         else $search_line = "/\{$vpunct([^.]+)\}/U";
         if (preg_match_all("$search_line", $file_content, $vars)) {
             foreach ($vars[0] as $key=>$line) {
+                if (preg_match("/^".$vpunct."\d+$/", $line) && $function) continue;
                 $var = stripslashes($vars[1][$key]);
                 if (preg_match("/^(_SESSION|_REQUEST|_POST|_COOKIE|_GET|_ENV|_SERVER|_FILES)/", $var)) {
                     if (preg_match("/^\{.+\}$/", $line)) $file_content = strtr($file_content, array($line => '<?php echo $'.$var.'; ?>'));
