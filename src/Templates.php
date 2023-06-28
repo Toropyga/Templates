@@ -3,17 +3,17 @@
  * Класс обработки шаблонов
  * @author Yuri Frantsevich (FYN)
  * Date 26/06/2005
- * @version 4.0.4
- * @copyright 2008-2021
+ * @version 4.0.5
+ * @copyright 2008-2023
  */
 
 //
 // +-----------------------------------------------------------------------+
-// | PHP Version 5-7                                                       |
+// | PHP Version 5-8                                                       |
 // +-----------------------------------------------------------------------+
 // | PHP Template script                                                   |
 // | (русская версия)                                                      |
-// | Copyright (c) 2005-2021 Yuri Frantsevich                              |
+// | Copyright (c) 2005-2023 Yuri Frantsevich                              |
 // +-----------------------------------------------------------------------+
 // |                                                                       |
 // | This library is free software; you can redistribute it and/or         |
@@ -502,7 +502,7 @@ class Templates {
             $file_content = strtr($file_content, array('.' => $punct));
             //$file_content = addslashes(stripslashes($file_content));
         }
-        if (preg_match_all("/(<source)([^.]+)(srcset(\s)?=)\s?([^<]+>)/iU", $file_content, $images)) {
+        if (preg_match_all("/(<img|<source)([^.]+)(srcset(\s)?=)\s?([^<]+>)/iU", $file_content, $images)) {
             foreach($images[0] as $key=>$img) {
                 if (!preg_match('/^(\\\)?(\"|\')?(\{\$)/', $images[5][$key])) {
                     $begin = preg_replace("/^(\"|\')?([^.]+)/", "\\1", stripslashes($images[5][$key]));
