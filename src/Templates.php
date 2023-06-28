@@ -3,7 +3,7 @@
  * Класс обработки шаблонов
  * @author Yuri Frantsevich (FYN)
  * Date 26/06/2005
- * @version 4.0.3
+ * @version 4.0.4
  * @copyright 2008-2021
  */
 
@@ -490,6 +490,19 @@ class Templates {
             //$file_content = addslashes(stripslashes($file_content));
         }
         if (preg_match_all("/(<img)([^.]+)(src(\s)?=)\s?([^<]+>)/iU", $file_content, $images)) {
+            foreach($images[0] as $key=>$img) {
+                if (!preg_match('/^(\\\)?(\"|\')?(\{\$)/', $images[5][$key])) {
+                    $begin = preg_replace("/^(\"|\')?([^.]+)/", "\\1", stripslashes($images[5][$key]));
+                    $end = preg_replace("/^(\"|\')?([^.]+)/", "\\2", stripslashes($images[5][$key]));
+                    //$begin = addslashes($begin);
+                    //$end = addslashes($end);
+                    $file_content = strtr($file_content, array($img => $images[1][$key].$images[2][$key].$images[3][$key].$begin.$rel_path."/".$end));
+                }
+            }
+            $file_content = strtr($file_content, array('.' => $punct));
+            //$file_content = addslashes(stripslashes($file_content));
+        }
+        if (preg_match_all("/(<source)([^.]+)(srcset(\s)?=)\s?([^<]+>)/iU", $file_content, $images)) {
             foreach($images[0] as $key=>$img) {
                 if (!preg_match('/^(\\\)?(\"|\')?(\{\$)/', $images[5][$key])) {
                     $begin = preg_replace("/^(\"|\')?([^.]+)/", "\\1", stripslashes($images[5][$key]));
